@@ -1,0 +1,47 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: login-egress-gateway
+spec:
+  gatewayClassName: istio
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: login-routes
+spec:
+  parentRefs:
+  - name: login-egress-gateway
+  rules:
+
+  # Redirect to Son's microservice
+  - matches:
+    - headers:
+      - name: Cookie
+        value: username=son
+    backendRefs:
+    - name: hnginx
+      port: 80
+  
+  # Redirect to Yejin's microservice
+  - matches:
+    - headers:
+      - name: Cookie
+        value: username=yellowstar
+    backendRefs:
+    - name: yejinpage
+      port: 80
+
+  # Redirect to error page for the following cases
+  # Not logged in
+  # Wrong user name
+  - backendRefs:
+    - name: error
+      port: 80
