@@ -41,7 +41,7 @@ spec:
       serviceAccountName: mariosisters-yejinpage
       containers:
       - name: yejinpage
-        image: reneeins/mario:1.0
+        image: reneeins/mario:2.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
