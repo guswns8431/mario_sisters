@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import './LoginForm.css'
+import ServiceBtn from './ServiceBtn.jsx'
 
 function LoginForm() {
   const [username, setUsername] = useState(localStorage.getItem('user') || '') ;
@@ -29,7 +30,7 @@ function LoginForm() {
           <div id="login-text" className="login-ele1">Welcome {username}</div>
           <div className="btn-container">
             <button onClick={handleLogout} className="login-btn">Sign Out</button>
-            <button className="service-btn">GO TO SERVICE</button>
+            <ServiceBtn/>
           </div>
         </div>
         ) : (
@@ -37,7 +38,7 @@ function LoginForm() {
           <input id="login-input" className="login-ele1" placeholder="User Name" value={username} onChange={InputHandler}/>
           <div className="btn-container">
             <button onClick={handleLogin} className="login-btn">Sign In</button>
-            <button className="service-btn">GO TO SERVICE</button>
+            <ServiceBtn/>
           </div>
         </div>  
       )}
@@ -45,4 +46,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default LoginForm
