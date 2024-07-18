@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: yejinpage
+  labels:
+    app: yejinpage
+    service: yejinpage
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: yejinpage
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mariosisters-yejinpage
+  labels:
+    account: yejinpage
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yejinpage-v1
+  labels:
+    app: yejinpage
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yejinpage
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: yejinpage
+        version: v1
+    spec:
+      serviceAccountName: mariosisters-yejinpage
+      containers:
+      - name: yejinpage
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
