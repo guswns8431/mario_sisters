@@ -4,13 +4,6 @@ body {
   background-color: #be2801
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
 .mario-logo {
   width: 50vw;
   height: auto;
@@ -18,20 +11,9 @@ body {
   top: 3vw;
 }
 
-.login-block {
-  display: block;
-  unicode-bidi: isolate;
-  position: relative;
-  top: 7vw;
-}
-
-.login-input {
-  width: 60%;
-  height: 34px;
-  margin-right: 12px;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #555;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
